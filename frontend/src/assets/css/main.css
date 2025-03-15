@@ -1,0 +1,31 @@
+/* src/assets/css/main.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: #1a73e8;
+    --secondary: #f1f3f4;
+  }
+
+  /* Smooth scrolling for the entire app */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Ensure scrollbar is hidden across all browsers */
+  html,
+  body {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+    overflow-y: scroll; /* Ensure scrolling still works */
+  }
+
+  html::-webkit-scrollbar,
+  body::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, and Opera */
+    width: 0px; /* Fallback for older browsers */
+    height: 0px;
+  }
+}
