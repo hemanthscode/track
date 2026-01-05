@@ -1,0 +1,52 @@
+{
+  "id": "expense-tracker-env",
+  "name": "Expense Tracker Environment",
+  "values": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:3000/api",
+      "enabled": true
+    },
+    {
+      "key": "access_token",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "refresh_token",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "user_id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "transaction_id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "recurring_id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "budget_id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "receipt_id",
+      "value": "",
+      "enabled": true
+    },
+    {
+      "key": "admin_token",
+      "value": "",
+      "enabled": true
+    }
+  ],
+  "_postman_variable_scope": "environment"
+}
