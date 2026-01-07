@@ -54,8 +54,8 @@ export const getBudgetRecommendations = asyncHandler(async (req, res) => {
   sendSuccess(
     res,
     HTTP_STATUS.OK,
-    { recommendations },
-    "Budget recommendations generated"
+    recommendations, // ✅ FIXED: Return recommendations directly
+    "Budget recommendations generated successfully"
   );
 });
 

@@ -1,0 +1,34 @@
+[
+  {
+    "id": "1",
+    "type": "expense",
+    "amount": 1250,
+    "category": "food",
+    "description": "Grocery shopping",
+    "date": "2026-01-05T00:00:00.000Z"
+  },
+  {
+    "id": "2",
+    "type": "income",
+    "amount": 50000,
+    "category": "salary",
+    "description": "Monthly salary",
+    "date": "2026-01-01T00:00:00.000Z"
+  },
+  {
+    "id": "3",
+    "type": "expense",
+    "amount": 850,
+    "category": "transport",
+    "description": "Uber rides",
+    "date": "2026-01-04T00:00:00.000Z"
+  },
+  {
+    "id": "4",
+    "type": "expense",
+    "amount": 2500,
+    "category": "entertainment",
+    "description": "Movie tickets and dinner",
+    "date": "2026-01-03T00:00:00.000Z"
+  }
+]

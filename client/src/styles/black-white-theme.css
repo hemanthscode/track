@@ -1,0 +1,80 @@
+/* Black & White Theme Variables */
+:root {
+  /* Pure black and white base */
+  --pure-white: 0 0% 100%;
+  --pure-black: 0 0% 0%;
+  
+  /* Subtle grays */
+  --gray-50: 0 0% 98%;
+  --gray-100: 0 0% 96%;
+  --gray-200: 0 0% 90%;
+  --gray-300: 0 0% 83%;
+  --gray-400: 0 0% 64%;
+  --gray-500: 0 0% 45%;
+  --gray-600: 0 0% 32%;
+  --gray-700: 0 0% 25%;
+  --gray-800: 0 0% 15%;
+  --gray-900: 0 0% 9%;
+}
+
+/* Light theme refinements */
+:root {
+  --background: var(--pure-white);
+  --foreground: var(--gray-900);
+  
+  --card: var(--pure-white);
+  --card-foreground: var(--gray-900);
+  
+  --popover: var(--pure-white);
+  --popover-foreground: var(--gray-900);
+  
+  --primary: var(--gray-900);
+  --primary-foreground: var(--pure-white);
+  
+  --secondary: var(--gray-100);
+  --secondary-foreground: var(--gray-900);
+  
+  --muted: var(--gray-100);
+  --muted-foreground: var(--gray-500);
+  
+  --accent: var(--gray-100);
+  --accent-foreground: var(--gray-900);
+  
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: var(--pure-white);
+  
+  --border: var(--gray-200);
+  --input: var(--gray-200);
+  --ring: var(--gray-900);
+}
+
+/* Dark theme */
+.dark {
+  --background: var(--gray-900);
+  --foreground: var(--gray-50);
+  
+  --card: var(--gray-800);
+  --card-foreground: var(--gray-50);
+  
+  --popover: var(--gray-800);
+  --popover-foreground: var(--gray-50);
+  
+  --primary: var(--gray-50);
+  --primary-foreground: var(--gray-900);
+  
+  --secondary: var(--gray-800);
+  --secondary-foreground: var(--gray-50);
+  
+  --muted: var(--gray-800);
+  --muted-foreground: var(--gray-400);
+  
+  --accent: var(--gray-800);
+  --accent-foreground: var(--gray-50);
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: var(--gray-50);
+  
+  --border: var(--gray-700);
+  --input: var(--gray-700);
+  --ring: var(--gray-300);
+}

@@ -66,32 +66,82 @@ export const getFinancialInsights = async (userId, filters = {}) => {
 };
 
 /**
- * Get budget recommendations
+ * Get budget recommendations - ✅ FIXED
  */
 export const getBudgetRecommendations = async (userId, monthlyIncome) => {
   try {
-    // Get current spending patterns
-    const categoryBreakdown = await getCategoryBreakdown(userId, {
-      type: "expense",
-    });
+    // ✅ FIXED: Validate input
+    if (!monthlyIncome || monthlyIncome <= 0) {
+      throw new ApiError(400, "Monthly income must be a positive number");
+    }
 
-    const spending = categoryBreakdown.map((cat) => ({
-      category: cat.category,
-      amount: cat.amount,
-    }));
+    // Get current spending patterns (optional - fallback if no data)
+    let spending = [];
+    try {
+      const categoryBreakdown = await getCategoryBreakdown(userId, {
+        type: "expense",
+      });
+      spending = categoryBreakdown.map((cat) => ({
+        category: cat.category,
+        amount: cat.amount,
+      }));
+    } catch (error) {
+      logger.warn("No spending data found for budget recommendations", { userId });
+      spending = []; // Continue with generic recommendations
+    }
 
-    // Generate recommendations
-    const recommendations = await generateBudgetRecommendations({
-      income: monthlyIncome,
-      spending,
-    });
+    // ✅ FIXED: Safe AI call with fallback
+    let recommendations;
+    try {
+      recommendations = await generateBudgetRecommendations({
+        income: monthlyIncome,
+        spending,
+      });
+    } catch (aiError) {
+      logger.warn("AI budget generation failed, using fallback", { 
+        userId, 
+        error: aiError.message 
+      });
+      
+      // ✅ FALLBACK: Standard 50/30/20 rule
+      recommendations = {
+        budgets: [
+          {
+            category: "Essentials (50%)",
+            amount: monthlyIncome * 0.5,
+            percentage: 50,
+            description: "Housing, food, utilities, transportation, insurance"
+          },
+          {
+            category: "Wants (30%)",
+            amount: monthlyIncome * 0.3,
+            percentage: 30,
+            description: "Entertainment, dining out, hobbies, subscriptions"
+          },
+          {
+            category: "Savings/Debt (20%)",
+            amount: monthlyIncome * 0.2,
+            percentage: 20,
+            description: "Emergency fund, retirement, debt repayment, investments"
+          }
+        ],
+        tips: [
+          "Automate savings transfers right after payday",
+          "Track spending weekly to stay within limits",
+          "Review and adjust categories monthly",
+          "Prioritize high-interest debt repayment first"
+        ],
+        totalAllocated: monthlyIncome
+      };
+    }
 
-    logger.info("Budget recommendations generated", { userId });
+    logger.info("Budget recommendations generated", { userId, monthlyIncome });
 
     return recommendations;
   } catch (error) {
     logger.error("Failed to generate budget recommendations", {
       userId,
+      monthlyIncome,
       error: error.message,
     });
     throw error;
